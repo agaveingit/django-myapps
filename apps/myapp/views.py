@@ -4,7 +4,7 @@ from .alat.konversi import Konverter
 # Create your views here.
 def home(request):
     return render(request, "home.html")
-
+# komen
 def konversi(request):
     result = None
     error = None
