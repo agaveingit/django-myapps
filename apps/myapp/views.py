@@ -9,14 +9,6 @@ def home(request):
 def konversi(request):
     result = None
     error = None
-    # 28 Agustus 2025 18:18
-    # Di sini ada unexpected behaviour, 
-    # di mana result menunjukan none
-    # menghasilkan result tidak tampil di browser
-    # tapi pesan error muncul
-    # TODO: Beresin ni error
-    # 28 Agustus 2025 18:22
-    # todo selesai
     if request.method == "POST":
         angka = request.POST.get("angka")
         konversi_angka = Konverter()
