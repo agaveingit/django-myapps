@@ -10,13 +10,11 @@ class Konverter:
             return f"{self.satuan[i]}"
         elif i < 20:
                 return f"{self.belasan[i - 10]}"
-        elif i < 100:
+        else:
             if (sisa) == 0:
                 return f"{self.satuan[puluh]} puluh" 
             else:
                 return f"{self.satuan[puluh]} puluh {self.satuan[sisa]}"
-        else:
-            pass
 
     def ratusan(self, i: int) -> str:
         ratus: int = int(i / 100)
@@ -26,13 +24,11 @@ class Konverter:
                 return "seratus"
             else:
                 return f"seratus {self.puluhan(sisa)}"
-        elif i < 1000:
+        else:
             if (sisa) == 0:
                 return f"{self.satuan[ratus]} ratus"  
             else:
                 return f"{self.satuan[ratus]} ratus {self.puluhan(sisa)}"
-        else:
-            pass
 
     def konversi(self, angka: int) -> str:
         if angka < 100:
