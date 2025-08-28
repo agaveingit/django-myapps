@@ -1,8 +1,8 @@
-def teks_dari_angka(angka: int) -> str:
+def konverter(angka: int) -> str:
     satuan: list[str] = ['', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan']
     belasan: list[str] = ["sepuluh", "sebelas", "dua belas", "tiga belas", "empat belas", "lima belas", "enam belas", "tujuh belas", "delapan belas", "sembilan belas"]
 
-    def puluhan(i):
+    def membilang_puluhan(i):
         puluh: int = int(i / 10)
         sisa: int = i % 10
         match i:
@@ -15,20 +15,23 @@ def teks_dari_angka(angka: int) -> str:
                     return f"{satuan[puluh]} puluh" 
                 else:
                     return f"{satuan[puluh]} puluh {satuan[sisa]}"
-    def ratusan(i):
-        ratus: int = int(i / 100)
-        sisa: int = i % 100
-        match i:
-            case i if i < 200:
-                if (sisa) == 0:
-                    return "seratus"
-                else:
-                    return f"seratus {puluhan(sisa)}"
-            case i if i < 1000:
-                if (sisa) == 0:
-                    return f"{satuan[ratus]} ratus"  
-                else:
-                    return f"{satuan[ratus]} ratus {puluhan(sisa)}"
+    def membilang_ratusan(i):
+        if i >= 100:
+            ratus: int = int(i / 100)
+            sisa: int = i % 100
+            match i:
+                case i if i < 200:
+                    if (sisa) == 0:
+                        return "seratus"
+                    else:
+                        return f"seratus {membilang_puluhan(sisa)}"
+                case i if i < 1000:
+                    if (sisa) == 0:
+                        return f"{satuan[ratus]} ratus"  
+                    else:
+                        return f"{satuan[ratus]} ratus {membilang_puluhan(sisa)}"
+    membilang_puluhan(angka)
+    membilang_ratusan(angka)
 
     # if angka == 0:
     #     return "Nol"

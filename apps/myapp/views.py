@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .konversi import teks_dari_angka
+from .konversi import konverter
 
 # Create your views here.
 def home(request):
@@ -14,8 +14,9 @@ def konversi(request):
         angka = request.POST.get("angka")
         try:
             angka = int(angka)
-            result = teks_dari_angka(angka)
+            result = konverter(angka)
         except (ValueError, TypeError):
             error = "Error! Harus masukan angka."
+    print(result, error)
 
     return render(request, "konversi.html", {"result": result, "error": error})
