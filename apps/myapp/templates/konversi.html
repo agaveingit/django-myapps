@@ -12,7 +12,7 @@
             <button type="submit">Konversi</button>
         </form>
 
-        {% if result %}
+        {% if result is not None %}
         <h2>Hasil: {{ result }}</h2>
         {% endif %}
 
