@@ -37,13 +37,3 @@ class Konverter:
             return self.ratusan(angka)
         else:
             return "Error!: Maksimal input adalah 999"
-        
-
-# if __name__ == "__main__":
-#     konversi_angka = Konverter()
-#     try:
-#         nomor: int = int(input("Masukan angka: "))
-#         hasil: str = konversi_angka.konversi(nomor) # Konverter.konversi(nomor)
-#         print(hasil)
-#     except (ValueError, TypeError):
-#         print("Error!: Harus masukan angka 0 - 999")
