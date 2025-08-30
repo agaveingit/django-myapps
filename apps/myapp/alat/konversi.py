@@ -1,4 +1,12 @@
 class Konverter:
+    """
+    Kode ini berfungsi untuk mengubah angka menjadi teks 
+    sesuai dengan input yang diberikan.
+
+    Kalkulasi dilakukan dengan cara mencari bilangan dan posisinya.
+    Batasan pada kode ini adalah limit angkanya sendiri yang hanya sampai 999.
+    Kode ini juga belum bisa melakukan konversi bilangan negatif.
+    """
     def __init__(self):
         self.satuan: list[str] = ['', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan']
         self.belasan: list[str] = ["sepuluh", "sebelas", "dua belas", "tiga belas", "empat belas", "lima belas", "enam belas", "tujuh belas", "delapan belas", "sembilan belas"]
