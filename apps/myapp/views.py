@@ -17,4 +17,4 @@ def konversi(request):
         except (ValueError, TypeError):
             error = "Error! Harus masukan angka."
 
-    return render(request, "konversi.html", {"result": result, "error": error})
+    return render(request, "myapp/konversi.html", {"result": result, "error": error})
