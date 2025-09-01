@@ -9,7 +9,7 @@ There are, library that do exactly the same. But it sure is fun to reecreate tha
 
 # Contribution ⬆️
 
-Feel free to contribute to this repo.
+Feel free to contribute to this repo. Or just clone it for yourself.
 
 ## How to?
 
