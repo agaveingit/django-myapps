@@ -12,8 +12,4 @@ def generate_qrcode(data, filename):
     img = qr.make_image(fill_color="black", back_color="white")
     img.save(filename)
 
-teks = "coba"
-namafile = "test.png"
-generate_qrcode(teks, namafile)
-if generate_qrcode:
-    print(f"done")
+# bisa dah
