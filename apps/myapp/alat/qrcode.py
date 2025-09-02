@@ -1,4 +1,4 @@
 import qrcode
 
-def generate_qrcode(data):
+def generate_qrcode(data, filename):
     pass
