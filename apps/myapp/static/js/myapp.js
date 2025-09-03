@@ -9,12 +9,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
     if (konversi) {
         konversi.addEventListener("submit", function(){
-            loading1.style.display = "block"
-            loading2.style.display = "block"
-            loading3.style.display = "block"
-            loading4.style.display = "block"
-            submitButton.disabled = true
-            submitButton.innerText = "Please Wait ..."
+            loading1.style.display = "block";
+            loading2.style.display = "block";
+            loading3.style.display = "block";
+            loading4.style.display = "block";
+            submitButton.disabled = true;
+            submitButton.innerText = "Please Wait ...";
+
+            setTimeout(() => {
+                konversi.submit();
+            }, 2000);
         })
     }
 })
