@@ -4,16 +4,21 @@
     {% endblock %}
 
     {% block content %}
-        <div class="converter">
+        <div id="converter">
             <h1>Konversi Angka → Teks</h1>
     
             <form method="POST" action="">
                 {% csrf_token %}
                 <input type="text" name="angka" placeholder="Masukkan angka">
-                <button type="submit">Konversi</button>
+                <button type="submit" id="submitButton">Konversi</button>
             </form>
         </div>
-        <div id="loading" style="display: none;"></div>
+
+        <div id="loading1" style="display: none;">Mengambil data dari input ....</div>
+        <div id="loading2" style="display: none;">Memproses data ....</div>
+        <div id="loading3" style="display: none;">Mengkalkulasikan data</div>
+        <div id="loading4" style="display: none;">Memperhitungkan posisi kuantum</div>
+
         <div id="result">
             {% if result is not None %}
             <h2>Hasil: {{ result }}</h2>
@@ -23,5 +28,4 @@
             <p style="color:red;">{{ error }}</p>
             {% endif %}
         </div>
-        <script src="{% static 'js/myapp.js' %}"></script>
     {% endblock %}
