@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", function(){
             loading4.style.display = "block";
             submitButton.disabled = true;
             submitButton.innerText = "Please Wait ...";
-
-            setTimeout(() => {
-                konversi.submit();
-            }, 2000);
         })
     }
 })
