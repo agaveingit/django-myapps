@@ -66,16 +66,3 @@ class Konverter:
 
         # fallback 
         return ""
-
-# if __name__ == "__main__":
-#     """
-#     Mengunakan input()
-#     dapat dilakukan dalam proses ujicoba
-#     """
-#     konversi_angka = Konverter()
-#     try:
-#         contoh_angka: int = 979
-#         hasil: str = konversi_angka.konversi(contoh_angka) # Ekspektasi output = sembilan ratus tujuh puluh sembilan
-#         print(hasil)
-#     except (ValueError, TypeError):
-#         print("Error!: Harus masukan angka")
