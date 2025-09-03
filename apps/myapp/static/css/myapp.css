@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+html {
+    font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
 .button1 {
     height: 25px;
     background-color: rgb(41, 146, 41);
