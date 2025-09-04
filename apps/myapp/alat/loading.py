@@ -2,9 +2,15 @@ import time
 
 class Loading:
     def __init__(self):
-        self.load1 = "Mengambil data dari input ...."
-        self.load2 = "Memproses data ...."
-        self.load3 = "Mengkalkulasikan data"
-        self.load4 = "Memperhitungkan posisi kuantum"
-    def load():
-        return time.sleep(0.8)
+        self.loadings: list[str] = ["Mengambil data dari input ....",
+                                "Memproses data ....",
+                                "Mengkalkulasikan data",
+                                "Memperhitungkan posisi kuantum",
+                                "Menampilkan hasil"]
+    def load(self) -> str:
+        for line in self.loadings:
+            print(line)
+            time.sleep(0.8)
+
+loader = Loading()
+loader.load()
