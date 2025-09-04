@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .alat.konversi import Konverter
-from .alat.loading import Loading
+from .alat.loading_gimmick import Loading
 
 # Create your views here.
 def home(request):
