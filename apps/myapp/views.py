@@ -7,16 +7,15 @@ def home(request):
     return render(request, "myapp/home.html")
 
 def konversi(request):
-    result: str = None
-    error: str = None
     if request.method == "POST":
         angka = request.POST.get("angka")
         konversi_angka = Konverter()
-        gimmick = Loading()
         try:
             angka: int = int(angka)
-            result: str = konversi_angka.konversi(angka)
+            result: str = konversi_angka.konversi(angka)    
+            error: str = None
         except (ValueError, TypeError):
+            result: str = None
             error = "Error! Harus masukan angka."
 
     return render(request, "myapp/konversi.html", {"result": result, "error": error}) 
