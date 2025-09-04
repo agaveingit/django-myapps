@@ -9,9 +9,11 @@ class Loading:
                                 "Menampilkan hasil"]
     def load(self, massage: str) -> str:
         self.loadings.append(massage)
-        for line in self.loadings:
-            print(line)
-            time.sleep(0.8)
+        lines: list[str] = self.loadings
+        return lines
+        # for line in lines:
+        #     print(line)
+        #     time.sleep(0.8)
 
 # y = Loading()
 # x = y.load("w")
