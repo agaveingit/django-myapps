@@ -14,9 +14,9 @@ def konversi(request):
         konversi_angka = Konverter()
         gimmick = Loading()
         try:
-            angka = int(angka)
-            process = gimmick.load()
-            result = konversi_angka.konversi(angka)
+            angka: int = int(angka)
+            hasil_konversi: str = konversi_angka.konversi(angka)
+            result: str = gimmick.load(hasil_konversi)
         except (ValueError, TypeError):
             error = "Error! Harus masukan angka."
 

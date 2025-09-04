@@ -7,7 +7,8 @@ class Loading:
                                 "Mengkalkulasikan data",
                                 "Memperhitungkan posisi kuantum",
                                 "Menampilkan hasil"]
-    def load(self) -> str:
+    def load(self, massage: str) -> str:
+        self.loadings.append(massage)
         for line in self.loadings:
             print(line)
             time.sleep(0.8)
