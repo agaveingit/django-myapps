@@ -11,6 +11,3 @@ class Loading:
         for line in self.loadings:
             print(line)
             time.sleep(0.8)
-
-loader = Loading()
-loader.load()

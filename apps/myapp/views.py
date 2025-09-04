@@ -12,13 +12,15 @@ def konversi(request):
     if request.method == "POST":
         angka = request.POST.get("angka")
         konversi_angka = Konverter()
+        gimmick = Loading()
         try:
             angka = int(angka)
+            process = gimmick.load()
             result = konversi_angka.konversi(angka)
         except (ValueError, TypeError):
             error = "Error! Harus masukan angka."
 
-    return render(request, "myapp/konversi.html", {"result": result, "error": error}) 
+    return render(request, "myapp/konversi.html", {"result": result, "process": process,"error": error}) 
 
 def qr_generator(request):
     pass
