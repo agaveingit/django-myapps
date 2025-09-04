@@ -20,7 +20,7 @@ def konversi(request):
         except (ValueError, TypeError):
             error = "Error! Harus masukan angka."
 
-    return render(request, "myapp/konversi.html", {"result": result, "process": process,"error": error}) 
+    return render(request, "myapp/konversi.html", {"result": result, "error": error}) 
 
 def qr_generator(request):
     pass
