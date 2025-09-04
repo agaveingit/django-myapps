@@ -12,3 +12,6 @@ class Loading:
         for line in self.loadings:
             print(line)
             time.sleep(0.8)
+
+# y = Loading()
+# x = y.load("w")
