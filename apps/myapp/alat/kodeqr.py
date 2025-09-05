@@ -17,6 +17,7 @@ def generate_qrcode(data: str):
     buffer = io.BytesIO()
     img.save(buffer, format="PNG")
     buffer.seek(0)
-    img_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
+    img_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return img_base64
 # bisa dah
