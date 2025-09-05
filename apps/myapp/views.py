@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .alat.konversi import Konverter
+from .alat.kodeqr import generate_qrcode
 
 # Create your views here.
 def home(request):
@@ -20,4 +21,12 @@ def konversi(request):
     return render(request, "myapp/konversi.html", {"result": result, "error": error})
 
 def qr_generator(request):
-    pass
+    data: str = None
+    qr_code = None
+    if request.method == "POST":
+        data: str = request.POST.get("data", "kosong")
+        qr_code = generate_qrcode(data)
+    else:
+        data: str = "kosong"
+
+    return render(request, "myapp/qr_generator.html", {"qr_code": qr_code})

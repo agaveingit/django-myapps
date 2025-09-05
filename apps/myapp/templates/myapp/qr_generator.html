@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+    {% block title %}
+    Django App
+    {% endblock %}
+
+    {% block content %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="data" placeholder="Masukkan teks/url">
+            <button type="submit">Generate QR</button>
+        </form>
+
+        {% if qr_code %}
+        <h3>Hasil QR:</h3>
+        <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+        {% endif %}
+    {% endblock %}
