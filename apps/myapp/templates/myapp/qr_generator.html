@@ -10,8 +10,17 @@
             <button type="submit">Generate QR</button>
         </form>
 
+            <select name="file_type">
+                <option value="png">PNG</option>
+                <option value="svg">SVG</option>
+            </select>
+
         {% if qr_code %}
-        <h3>Hasil QR:</h3>
-        <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+            <h3>Hasil QR:</h3>
+            {% if file_type == "png" %}
+            <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+            {% elif file_type == "svg" %}
+            <div>{{ qr_code|safe }}</div>
+            {% endif %}
         {% endif %}
     {% endblock %}

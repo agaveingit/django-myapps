@@ -26,14 +26,15 @@ def qr_generator(request):
     qr_code = None
     qr = GenerateQRCode()
     if request.method =="POST":
+        data: str = request.POST.get("data", "kosong") # Get data to create QR Code, "kosong" default
+        file_type: str = request.POST.get("file_type", "png") # File type, "png" default
         if file_type == "png":
-            data: str = request.POST.get("data", "kosong")
             qr_code = qr.qrcode_img(data)
         elif file_type == "svg":
-            data: str = request.POST.get("data", "kosong")
             qr_code = qr.qrcode_svg(data)
-    else:
-        data: str = "kosong"
-        return "ERROR! Please try again"
+    # else:
+    #     data: str = "kosong"
+    #     return "ERROR! Please try again"
+    # I think I don't need this?
 
-    return render(request, "myapp/qr_generator.html", {"qr_code": qr_code})
+    return render(request, "myapp/qr_generator.html", {"qr_code": qr_code, "file_type": file_type})
