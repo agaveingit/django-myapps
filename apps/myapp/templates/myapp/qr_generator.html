@@ -7,24 +7,21 @@
         <form method="post">
             {% csrf_token %}
             <input type="text" name="data" placeholder="Masukkan teks/url">
-            <button type="submit">Generate QR</button>
+            <select name="file_type">
+                <option value="png" {% if file_type == "png" %} selected {% endif %}>PNG</option>
+                <option value="svg" {% if file_type == "svg" %} selected {% endif %}>SVG</option>
+            </select>
+            <button type="submit" name="action" value="preview">Preview QR</button>
+            <button type="submit" name="action" value="download">Download QR</button>
         </form>
 
-            <select name="file_type">
-                <option value="png">PNG</option>
-                <option value="svg">SVG</option>
-            </select>
 
-        {% if qr_code %}
+        {% if qr_code and action == "preview" %}
             <h3>Hasil QR:</h3>
             {% if file_type == "png" %}
             <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
             {% elif file_type == "svg" %}
             <div>{{ qr_code|safe }}</div>
             {% endif %}
-            <br>
-            <a href="{% url 'qr_download' %}?data={{ data }}&file_type={{ file_type }}">
-                <button type="button">Download {{ file_type|upper }}</button>
-            </a>
         {% endif %}
     {% endblock %}
