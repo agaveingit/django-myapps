@@ -22,5 +22,9 @@
             {% elif file_type == "svg" %}
             <div>{{ qr_code|safe }}</div>
             {% endif %}
+            <br>
+            <a href="{% url 'qr_download' %}?data={{ data }}&file_type={{ file_type }}">
+                <button type="button">Download {{ file_type|upper }}</button>
+            </a>
         {% endif %}
     {% endblock %}

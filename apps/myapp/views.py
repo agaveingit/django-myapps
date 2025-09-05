@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from .alat.konversi import Konverter
 from .alat.kodeqr import GenerateQRCode
+import io
 
 # Create your views here.
 def home(request):
@@ -32,9 +33,29 @@ def qr_generator(request):
             qr_code = qr.qrcode_img(data)
         elif file_type == "svg":
             qr_code = qr.qrcode_svg(data)
-    # else:
-    #     data: str = "kosong"
-    #     return "ERROR! Please try again"
-    # I think I don't need this?
 
     return render(request, "myapp/qr_generator.html", {"qr_code": qr_code, "file_type": file_type})
+
+def qr_download(request):
+    data = request.GET.get("data", "kosong")
+    file_type = request.GET.get("file_type", "png")
+
+    qr = GenerateQRCode()
+    buffer = io.BytesIO()
+
+    if file_type == "png":
+        img_base64 = qr.qrcode_img(data)  # base64
+        # decode base64 → bytes
+        import base64
+        img_bytes = base64.b64decode(img_base64)
+        response = HttpResponse(img_bytes, content_type="image/png")
+        response["Content-Disposition"] = f'attachment; filename="qr_code.png"'
+        return response
+
+    elif file_type == "svg":
+        svg_data = qr.qrcode_svg(data)
+        response = HttpResponse(svg_data, content_type="image/svg+xml")
+        response["Content-Disposition"] = f'attachment; filename="qr_code.svg"'
+        return response
+
+    return HttpResponse("Format tidak didukung", status=400)
