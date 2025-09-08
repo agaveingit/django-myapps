@@ -4,28 +4,35 @@
     {% endblock %}
 
     {% block content %}
-        <div id="converter">
-            <h1>Konversi Angka → Teks</h1>
-    
-            <form method="POST" action="">
-                {% csrf_token %}
-                <input type="text" name="angka" placeholder="Masukkan angka">
-                <button type="submit" id="submitButton">Konversi</button>
-            </form>
-        </div>
-
-        <div id="loading1" style="display: none;">Mengambil data dari input ....</div>
-        <div id="loading2" style="display: none;">Memproses data ....</div>
-        <div id="loading3" style="display: none;">Mengkalkulasikan data</div>
-        <div id="loading4" style="display: none;">Memperhitungkan posisi kuantum</div>
-
-        <div id="result">
-            {% if result is not None %}
-            <h2>Hasil: {{ result }}</h2>
-            {% endif %}
-    
-            {% if error %}
-            <p style="color:red;">{{ error }}</p>
-            {% endif %}
-        </div>
+    <div class="main-content">
+        <section class="section">
+            <h2 class="section-title">Konverter</h2>
+            <div class="card">
+                <h2 class="subtitle">Konversi Angka -> Teks</h2>
+                <!-- <p class="text">Ini adalah contoh card dengan efek hover yang halus.</p> -->
+                <!-- <input type="text" class="input" placeholder="Input elegan"> -->
+                <form method="POST" action="">
+                    {% csrf_token %}
+                        <input type="text" name="angka" placeholder="Masukkan angka" class="input">
+                        <button type="submit" id="submitButton" class="button1">Konversi</button>
+                </form>
+                {% if result is not None %}
+                <p class="text">Hasil: {{ result }}</h2>
+                <!-- <p class="text">{{ result }}</p> -->
+                {% endif %}
+                
+                {% if error %}
+                <p style="color:red;" class="text">{{ error }}</p>
+                {% endif %}
+            </div>
+            
+            <div id="loading1" style="display: none;">Mengambil data dari input ....</div>
+            <div id="loading2" style="display: none;">Memproses data ....</div>
+            <div id="loading3" style="display: none;">Mengkalkulasikan data</div>
+            <div id="loading4" style="display: none;">Memperhitungkan posisi kuantum</div>
+            
+            <!-- <div id="container2" class="container2">
+            </div> -->
+        </section>
+    </div>
     {% endblock %}
