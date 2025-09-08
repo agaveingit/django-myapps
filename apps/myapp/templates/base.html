@@ -25,20 +25,20 @@
         </div>
     </header>
     <div class="">{% block content %} {% endblock %}
-    </div>
-    <div class="">
-        <section class="section">
-            <h2 class="section-title">Apps List</h2>
-            <div class="container1">
-                <h2 class="subtitle">Konversi Angka ke Teks</h2>
-                <p class="text">Ini adalah aplikasi untuk mendapatkan ejaan suatu bilangan.</p>
-                <a href="{% url 'konversi' %}">
-                    <button class="button1">
-                        Konversi angka ke teks
-                    </button>
-                </a>
-            </div>
-        </section>
+        <div class="main-content">
+            <section class="section">
+                <h2 class="section-title">Berita Panas</h2>
+                <div class="container1">
+                    <h2 class="subtitle"><strong>Viral Isi Flashdisk Syahroni Tersebar, "Bugil Berdua Bareng Bahlil"</strong></h2>
+                    <p class="text">Beberapa waktu lalu Syahroni mengungkap flashdisk miliknya hilang saat dijarah oleh warga. Tersebar ...</p>
+                    <a href="{% url 'konversi' %}">
+                        <button class="button1">
+                            Konversi angka ke teks
+                        </button>
+                    </a>
+                </div>
+            </section>
+        </div>
     </div>
     <footer class="footer">
         <div class="footer-container">
