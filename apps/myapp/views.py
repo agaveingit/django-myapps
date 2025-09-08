@@ -35,8 +35,10 @@ def qr_generator(request):
         if action == "preview":
             if file_type == "png":
                 qr_code = qr.qrcode_img(data)
+            # There is a bug here, where you can't preview SVG file
             elif file_type == "svg":
                 qr_code = qr.qrcode_svg(data)
+        # There is a bug here, where you always get the same qr code when download
         elif action == "download":
             if file_type == "png":
                 img_base64 = qr.qrcode_img(data)
