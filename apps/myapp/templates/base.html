@@ -14,19 +14,32 @@
 </head>
 
 <body>
-<header class="header header-v2">
-    <div class="header-container">
-        <a href="#" class="logo">Ageavava</a>
-        <nav class="nav">
-            <a href="{% url 'konversi' %}" class="nav-link">Home</a>
-            <a href="#" class="nav-link">About Us</a>
-            <a href="#" class="nav-link">Contact</a>
-        </nav>
+    <header class="header header-v2">
+        <div class="header-container">
+            <a href="#" class="logo">Ageavava</a>
+            <nav class="nav">
+                <a href="{% url 'home' %}" class="nav-link">Home</a>
+                <a href="#" class="nav-link">About Us</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <div class="">{% block content %} {% endblock %}
     </div>
-</header>
-    <div class="container">{% block content %} {% endblock %}</div>
-    <script src="{% static 'js/myapp.js' %}"></script>
-    
+    <div class="">
+        <section class="section">
+            <h2 class="section-title">Apps List</h2>
+            <div class="container1">
+                <h2 class="subtitle">Konversi Angka ke Teks</h2>
+                <p class="text">Ini adalah aplikasi untuk mendapatkan ejaan suatu bilangan.</p>
+                <a href="{% url 'konversi' %}">
+                    <button class="button1">
+                        Konversi angka ke teks
+                    </button>
+                </a>
+            </div>
+        </section>
+    </div>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -55,5 +68,6 @@
     
     <div style="height: 50px;"></div>
     
+    <script src="{% static 'js/myapp.js' %}"></script>
 </body>
 </html>
