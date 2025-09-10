@@ -59,3 +59,6 @@ def qr_generator(request):
         "data": data,
         "action": action,
     })
+
+
+"""I need sleep"""
