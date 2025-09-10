@@ -51,3 +51,11 @@ def qr_gen(request):
         "data": data,
         "action": action,
 })
+
+"""
+Now I Know, so here is the reason about unexpected behaviour, note for myself tommorow
+When you pass a data, and you clik the preview. The input would be cleared and when you try 
+to download you don't get your current qrcode instead the default value 'kosong'.
+
+So my strategy? Try to preserve the input so when you download you get what you want.
+"""
