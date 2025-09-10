@@ -43,7 +43,7 @@ def qr_gen(request):
                 qr_code = qr.qrcode_img(data)
         elif action == "download":
             if file_type == "png":
-                img = qr.qrcode_img_object(data) 
+                img = qr.download_qrcode_img(data) 
                 buffer = io.BytesIO()
                 img.save(buffer, format="PNG")
                 response = HttpResponse(buffer.getvalue(), content_type="image/png")
