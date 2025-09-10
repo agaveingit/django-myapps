@@ -32,7 +32,7 @@ def qr_gen(request):
         qrgen.html input name='data' give 'string' or empty default is empty
         qrgen.html select name='file_type' give 'png' or 'svg' default is 'png'
         """
-        data: str = request.method("data", "kosong")
+        data: str = request.POST.get("data", "kosong")
         file_type: str = request.POST.get("file_type", "png")
         action: str = request.POST.get("action")
         if file_type == "png":
@@ -45,7 +45,7 @@ def qr_gen(request):
                 qr_code = qr.qrcode_img(data)
             elif action == "download":
                 qr_code = qr.qrcode_img(data)
-    return render(request, "myapp/qr_generator.html", {
+    return render(request, "myapp/qrgen.html", {
         "qr_code": qr_code,
         "file_type": file_type,
         "data": data,
