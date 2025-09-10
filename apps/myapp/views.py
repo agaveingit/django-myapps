@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponse
-from .Utilities.konversi import Konverter
-from .Utilities.kodeqr import GenerateQRCode
-import io
+from .Utilities.KonverterAngka import Konverter
+from .Utilities.QRGenerator import GenerateQRCode
 import base64
 
 # Create your views here.
@@ -16,7 +15,7 @@ def konversi(request):
         konversi_angka = Konverter()
         try:
             angka: int = int(angka)
-            result: str = konversi_angka.konversi(angka)
+            result: str = konversi_angka.konverter(angka)
         except (ValueError, TypeError):
             error: str = "Error! Harus masukan angka."
 

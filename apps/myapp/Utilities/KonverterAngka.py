@@ -39,9 +39,9 @@ class Konverter:
         else:
             return f"{self.satuan[ratus]} ratus {self.puluhan(sisa)}"
 
-    def konversi(self, angka: int) -> str:
+    def konverter(self, angka: int) -> str:
         if angka < 0:
-            return f"minus {self.konversi(-angka)}"
+            return f"minus {self.konverter(-angka)}"
         
         if angka == 0:
             return "nol"
