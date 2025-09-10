@@ -67,4 +67,6 @@ When you pass a data, and you clik the preview. The input would be cleared and w
 to download you don't get your current qrcode instead the default value 'kosong'.
 
 So my strategy? Try to preserve the input so when you download you get what you want.
+
+What about SVG? It works now its not just blank my friend instead it return literal strings 😂😫.
 """
