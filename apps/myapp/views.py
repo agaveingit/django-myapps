@@ -36,6 +36,7 @@ def qr_generator(request):
                 qr_code = qr.qrcode_img(data)
             # There is a bug here, where you can't preview SVG file
             # Trigger the qr_code.img(), that'll do
+            # No, it return string instead
             elif file_type == "svg":
                 qr_code = qr.qrcode_img(data)
         # There is a bug here, where you always get the same qr code when download
