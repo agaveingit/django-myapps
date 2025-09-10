@@ -40,7 +40,7 @@ def qr_gen(request):
             if file_type == "png":
                 qr_code = qr.qrcode_img(data)
             elif file_type == "svg":
-                qr_code = qr.qrcode_img(data)
+                qr_code = qr.qrcode_svg(data)
         elif action == "download":
             if file_type == "png":
                 img = qr.download_qrcode_img(data) 
