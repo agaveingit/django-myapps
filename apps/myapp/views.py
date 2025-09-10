@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
-from .alat.konversi import Konverter
-from .alat.kodeqr import GenerateQRCode
+from .Utilities.konversi import Konverter
+from .Utilities.kodeqr import GenerateQRCode
 import io
 import base64
 
