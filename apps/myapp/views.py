@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from .Utilities.KonverterAngka import Konverter
 from .Utilities.QRGenerator import GenerateQRCode
 import base64
+import io
 
 # Create your views here.
 def home(request):
@@ -21,44 +22,51 @@ def konversi(request):
 
     return render(request, "myapp/konversi.html", {"result": result, "error": error})
 
-def qr_generator(request):
+def qr_gen(request):
     qr = GenerateQRCode()
     qr_code = None
     data: str = None
     file_type: str = None
     action: str = None
     if request.method =="POST":
-        data: str = request.POST.get("data", "kosong") # Get data to create QR Code, "kosong" default
-        file_type: str = request.POST.get("file_type", "png") # File type, "png" default
+        """
+        qrgen.html input name='data' give 'string' or empty default is empty
+        qrgen.html select name='file_type' give 'png' or 'svg' default is 'png'
+        """
+        data: str = request.POST.get("data", "kosong")
+        file_type: str = request.POST.get("file_type", "png")
         action: str = request.POST.get("action")
         if action == "preview":
             if file_type == "png":
                 qr_code = qr.qrcode_img(data)
-            # There is a bug here, where you can't preview SVG file
-            # Trigger the qr_code.img(), that'll do
-            # No, it return string instead
             elif file_type == "svg":
-                qr_code = qr.qrcode_img(data)
-        # There is a bug here, where you always get the same qr code when download
+                qr_code = qr.qrcode_svg(data)
         elif action == "download":
             if file_type == "png":
-                img_base64 = qr.qrcode_img(data)
-                img_bytes = base64.b64decode(img_base64)
-                response = HttpResponse(img_bytes, content_type="image/png")
-                response["Content-Disposition"] = 'attachment; filename="qr_code.png"'
-                return response            
+                img = qr.download_qrcode_img(data) 
+                buffer = io.BytesIO()
+                img.save(buffer, format="PNG")
+                response = HttpResponse(buffer.getvalue(), content_type="image/png")
+                response['Content-Disposition'] = 'attachment; filename="qrcode.png"'
+                return response
             elif file_type == "svg":
                 svg_data = qr.qrcode_svg(data)
                 response = HttpResponse(svg_data, content_type="image/svg+xml")
-                response["Content-Disposition"] = 'attachment; filename="qr_code.svg"'
+                response['Content-Disposition'] = 'attachment; filename="qrcode.svg"'
                 return response
-
-    return render(request, "myapp/qr_generator.html", {
+    return render(request, "myapp/qrgen.html", {
         "qr_code": qr_code,
         "file_type": file_type,
         "data": data,
         "action": action,
-    })
+})
 
+"""
+Now I Know, so here is the reason about unexpected behaviour, note for myself tommorow
+When you pass a data, and you clik the preview. The input would be cleared and when you try 
+to download you don't get your current qrcode instead the default value 'kosong'.
 
-"""I need sleep"""
+So my strategy? Try to preserve the input so when you download you get what you want.
+
+What about SVG? It works now its not just blank my friend instead it return literal strings 😂😫.
+"""
