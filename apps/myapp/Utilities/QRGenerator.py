@@ -5,8 +5,7 @@ from qrcode.image.svg import SvgImage
 
 class GenerateQRCode:
     def __init__(self):
-        self.file_type_png: str = "png"
-        self.file_type_svg: str = "svg"
+        pass
 
     def qrcode_img(self, data: str) -> str:
         qr = qrcode.QRCode(

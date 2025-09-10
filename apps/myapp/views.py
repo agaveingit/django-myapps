@@ -21,41 +21,33 @@ def konversi(request):
 
     return render(request, "myapp/konversi.html", {"result": result, "error": error})
 
-def qr_generator(request):
+def qr_gen(request):
     qr = GenerateQRCode()
     qr_code = None
     data: str = None
     file_type: str = None
     action: str = None
     if request.method =="POST":
-        data: str = request.POST.get("data", "kosong") # Get data to create QR Code, "kosong" default
-        file_type: str = request.POST.get("file_type", "png") # File type, "png" default
+        """
+        qrgen.html input name='data' give 'string' or empty default is empty
+        qrgen.html select name='file_type' give 'png' or 'svg' default is 'png'
+        """
+        data: str = request.method("data", "kosong")
+        file_type: str = request.POST.get("file_type", "png")
         action: str = request.POST.get("action")
-        if action == "preview":
-            if file_type == "png":
+        if file_type == "png":
+            if action == "preview":
                 qr_code = qr.qrcode_img(data)
-            # There is a bug here, where you can't preview SVG file
-            # Trigger the qr_code.img(), that'll do
-            # No, it return string instead
-            elif file_type == "svg":
+            elif action == "download":
                 qr_code = qr.qrcode_img(data)
-        # There is a bug here, where you always get the same qr code when download
-        elif action == "download":
-            if file_type == "png":
-                img_base64 = qr.qrcode_img(data)
-                img_bytes = base64.b64decode(img_base64)
-                response = HttpResponse(img_bytes, content_type="image/png")
-                response["Content-Disposition"] = 'attachment; filename="qr_code.png"'
-                return response            
-            elif file_type == "svg":
-                svg_data = qr.qrcode_svg(data)
-                response = HttpResponse(svg_data, content_type="image/svg+xml")
-                response["Content-Disposition"] = 'attachment; filename="qr_code.svg"'
-                return response
-
+        elif file_type == "svg":
+            if action == "preview":
+                qr_code = qr.qrcode_img(data)
+            elif action == "download":
+                qr_code = qr.qrcode_img(data)
     return render(request, "myapp/qr_generator.html", {
         "qr_code": qr_code,
         "file_type": file_type,
         "data": data,
         "action": action,
-    })
+})
