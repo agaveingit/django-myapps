@@ -26,10 +26,6 @@ class GenerateQRCode:
         img.save(buffer, format="PNG")
         buffer.seek(0)
 
-        buffer = io.BytesIO()
-        img.save(buffer, format="PNG")
-        buffer.seek(0)
-
         img_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
         return img_base64
     
@@ -46,3 +42,6 @@ class GenerateQRCode:
         svg.save(buffer)
         svg_data = buffer.getvalue().decode()
         return svg_data
+    
+    # It works, svg can be previewed but it so small
+    # Maybe I'll use png as a preview

@@ -24,7 +24,7 @@
                     {% if file_type == "png" %}
                         <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
                     {% elif file_type == "svg" %}
-                        <div>{{ qr_code|safe }}</div>
+                        <object type="image/svg+xml" data="data:image/svg+xml;utf8,{{ qr_code }}"></object>
                     {% endif %}
                 {% endif %}
                 </div>
