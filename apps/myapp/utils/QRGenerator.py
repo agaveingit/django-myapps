@@ -42,6 +42,3 @@ class GenerateQRCode:
         svg.save(buffer)
         svg_data = buffer.getvalue().decode()
         return svg_data
-    
-    # It works, svg can be previewed but it so small
-    # Maybe I'll use png as a preview
