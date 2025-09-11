@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponse
-from .Utilities.KonverterAngka import Konverter
-from .Utilities.QRGenerator import GenerateQRCode
-import base64
+from utils.KonverterAngka import Konverter
+from utils.QRGenerator import GenerateQRCode
 import io
 
 # Create your views here.
