@@ -5,6 +5,7 @@
     --surface-color: #FFFFFF;
     --text-primary: #333333;
     --text-secondary: #666666;
+    --text-error: red;
     --border-radius: 8px;
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
     --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.07);
@@ -115,6 +116,12 @@ body {
 
 .text {
     color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.error-text {
+    color: var(--text-error);
     line-height: 1.6;
     margin-bottom: 16px;
 }
