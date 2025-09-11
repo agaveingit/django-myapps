@@ -11,7 +11,7 @@
                 <h2 class="subtitle">Buat Kode QR dari Teks atau Link</h2>
                 <form method="POST" action="">
                 {% csrf_token %}
-                    <input type="text" name="data" placeholder="Masukkan teks/url" class="input">
+                    <input type="text" name="data" placeholder="Masukkan teks/url" class="input" value="{{ data }}">
                     <select name="file_type" class="select">
                         <option value="png" {% if file_type == "png" %} selected {% endif %}>PNG</option>
                         <option value="svg" {% if file_type == "svg" %} selected {% endif %}>SVG</option>
