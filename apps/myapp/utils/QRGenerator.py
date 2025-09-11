@@ -22,7 +22,7 @@ class GenerateQRCode:
             qr.add_data(data)
             qr.make(fit=True)
             return qr
-        except DataOverflowError as e:
+        except (DataOverflowError, ValueError) as e:
             raise QRCodeDataError("Data terlalu panjang. Harap coba lagi") from e
 
     def qrcode_img(self, data: str) -> str:
