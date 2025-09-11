@@ -19,6 +19,9 @@
                     <button type="submit" name="action" value="preview" class="button1">Preview QR</button>
                     <button type="submit" name="action" value="download" class="button2">Download QR</button>
                 </form>
+                {% if error %}
+                    <p class="error-text">{{ error }}</p>
+                {% endif %}
                 {% if qr_code and action == "preview" %}
                     <h3>Hasil QR:</h3>
                     <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">

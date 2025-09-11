@@ -2,24 +2,50 @@ import qrcode
 import io
 import base64
 from qrcode.image.svg import SvgImage
+from qrcode.exceptions import DataOverflowError
+
+class QRCodeDataError(ValueError):
+    pass
 
 class GenerateQRCode:
-    def __init__(self):
-        pass
+    def __init__(self, max_version: int = 20, max_size: int = 1000):
+        self.max_version = max_version
+        self.max_size = max_size
 
-    def _generate_qr_object(self, data: str):
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=10,
-            border=4,
-        )
-        qr.add_data(data)
-        qr.make(fit=True)
-        return qr
+    def _generate_qr_object(self, data: str) -> str:
+        if not data or data.strip().lower() == "kosong":
+            raise QRCodeDataError("Input tidak boleh kosong.")
+        
+        try:
+            qr = qrcode.QRCode(
+                version=None,
+                error_correction=qrcode.constants.ERROR_CORRECT_H,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data(data)
+            qr.make(fit=True)
+
+            if qr.version > self.max_version:
+                raise QRCodeDataError(
+                    f"Ukuran QR Code terlalu besar, kemungkinan disebabkan input terlalu panjang. Harap periksa kembali input"
+                )
+
+            final_size = qr.modules_count * qr.box_size
+            if final_size > self.max_size:
+                raise QRCodeDataError(
+                    f"QR Code terlalu besar untuk ditampilkan, kemungkinan disebabkan input terlalu panjang. Harap periksa kembali input"
+                )
+            
+            return qr
+        
+        except (DataOverflowError, ValueError) as e:
+            raise QRCodeDataError("Data terlalu panjang. Harap coba lagi") from e
 
     def qrcode_img(self, data: str) -> str:
         qr = self._generate_qr_object(data)
+        if qr is None:
+            return None
         img = qr.make_image(fill_color="black", back_color="white")
         
         buffer = io.BytesIO()
@@ -42,3 +68,4 @@ class GenerateQRCode:
         svg.save(buffer)
         svg_data = buffer.getvalue().decode()
         return svg_data
+    
