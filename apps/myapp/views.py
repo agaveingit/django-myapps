@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .utils.KonverterAngka import Konverter
-from .utils.QRGenerator import GenerateQRCode
+from .utils.QRGenerator import GenerateQRCode, QRCodeDataError
 import io 
 
 # Create your views here.
@@ -27,6 +27,7 @@ def qr_gen(request):
     data: str = None
     file_type: str = None
     action: str = None
+    error: str = None
     if request.method =="POST":
         """
         qrgen.html input name='data' give 'string' or empty default is empty
@@ -35,24 +36,29 @@ def qr_gen(request):
         data: str = request.POST.get("data", "kosong")
         file_type: str = request.POST.get("file_type", "png")
         action: str = request.POST.get("action")
-        if action == "preview":
-            qr_code = qr.qrcode_img(data)
-        elif action == "download":
-            if file_type == "png":
-                img = qr.download_qrcode_img(data) 
-                buffer = io.BytesIO()
-                img.save(buffer, format="PNG")
-                response = HttpResponse(buffer.getvalue(), content_type="image/png")
-                response['Content-Disposition'] = 'attachment; filename="qrcode.png"'
-                return response
-            elif file_type == "svg":
-                svg_data = qr.qrcode_svg(data)
-                response = HttpResponse(svg_data, content_type="image/svg+xml")
-                response['Content-Disposition'] = 'attachment; filename="qrcode.svg"'
-                return response
+        try:
+            if action == "preview":
+                qr_code = qr.qrcode_img(data)
+            elif action == "download":
+                if file_type == "png":
+                    img = qr.download_qrcode_img(data) 
+                    buffer = io.BytesIO()
+                    img.save(buffer, format="PNG")
+                    response = HttpResponse(buffer.getvalue(), content_type="image/png")
+                    response['Content-Disposition'] = 'attachment; filename="qrcode.png"'
+                    return response
+                elif file_type == "svg":
+                    svg_data = qr.qrcode_svg(data)
+                    response = HttpResponse(svg_data, content_type="image/svg+xml")
+                    response['Content-Disposition'] = 'attachment; filename="qrcode.svg"'
+                    return response
+        except QRCodeDataError as e:
+            error = str(e)
+
     return render(request, "myapp/qrgen.html", {
         "qr_code": qr_code,
         "file_type": file_type,
         "data": data,
         "action": action,
+        "error": error,
 })

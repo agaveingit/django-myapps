@@ -2,24 +2,33 @@ import qrcode
 import io
 import base64
 from qrcode.image.svg import SvgImage
+from qrcode.exceptions import DataOverflowError
+
+class QRCodeDataError(ValueError):
+    pass
 
 class GenerateQRCode:
     def __init__(self):
         pass
 
     def _generate_qr_object(self, data: str):
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=10,
-            border=4,
-        )
-        qr.add_data(data)
-        qr.make(fit=True)
-        return qr
+        try:
+            qr = qrcode.QRCode(
+                version=None,
+                error_correction=qrcode.constants.ERROR_CORRECT_H,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data(data)
+            qr.make(fit=True)
+            return qr
+        except DataOverflowError as e:
+            raise QRCodeDataError("Data terlalu panjang. Harap coba lagi") from e
 
     def qrcode_img(self, data: str) -> str:
         qr = self._generate_qr_object(data)
+        if qr is None:
+            return None
         img = qr.make_image(fill_color="black", back_color="white")
         
         buffer = io.BytesIO()
@@ -42,3 +51,4 @@ class GenerateQRCode:
         svg.save(buffer)
         svg_data = buffer.getvalue().decode()
         return svg_data
+    
