@@ -21,11 +21,7 @@
                 </form>
                 {% if qr_code and action == "preview" %}
                     <h3>Hasil QR:</h3>
-                    {% if file_type == "png" %}
-                        <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
-                    {% elif file_type == "svg" %}
-                        <object type="image/svg+xml" data="data:image/svg+xml;utf8,{{ qr_code }}"></object>
-                    {% endif %}
+                    <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
                 {% endif %}
                 </div>
             </section>

@@ -36,10 +36,7 @@ def qr_gen(request):
         file_type: str = request.POST.get("file_type", "png")
         action: str = request.POST.get("action")
         if action == "preview":
-            if file_type == "png":
-                qr_code = qr.qrcode_img(data)
-            elif file_type == "svg":
-                qr_code = qr.qrcode_svg(data)
+            qr_code = qr.qrcode_img(data)
         elif action == "download":
             if file_type == "png":
                 img = qr.download_qrcode_img(data) 
