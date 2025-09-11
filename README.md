@@ -1,7 +1,9 @@
 ## My (Our) Collection of App Built in and With Django 🖥️
 
-- Number Converter
-- Soon to be
+- Number Converter (in Indonesian)
+- QR Generator
+- Soon
+- Can it play DOOM?
 
 ### Nummber Converter 🔢
 
