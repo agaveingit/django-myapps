@@ -36,6 +36,7 @@ def qr_gen(request):
         data: str = request.POST.get("data", "kosong")
         file_type: str = request.POST.get("file_type", "png")
         action: str = request.POST.get("action")
+
         try:
             if action == "preview":
                 qr_code = qr.qrcode_img(data)
