@@ -9,6 +9,10 @@
 
 There are, library that do exactly the same. But it sure is fun to reecreate that.
 
+### QR Generator
+
+It's just meh, so easy. I use library to do that 😂
+
 ## Contribution ⬆️
 
 Feel free to contribute to this repo. Or just clone it for yourself.
