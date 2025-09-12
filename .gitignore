@@ -151,6 +151,7 @@ activemq-data/
 .env
 .envrc
 .venv
+virten/
 env/
 venv/
 ENV/
@@ -199,7 +200,7 @@ cython_debug/
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
 #  and can be added to the global gitignore or merged into this file. However, if you prefer, 
 #  you could uncomment the following to ignore the entire vscode folder
-# .vscode/
+.vscode/
 
 # Ruff stuff:
 .ruff_cache/
@@ -215,13 +216,13 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-!*.code-workspace
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+# !.vscode/*.code-snippets
+# !*.code-workspace
 
 # Built Visual Studio Code Extensions
-*.vsix
+# *.vsix
