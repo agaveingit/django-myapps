@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,8 +10,7 @@
         Django App
         {% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'css/myapp.css' %}"
-        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/myapp.css' %}" rel="stylesheet" />
 </head>
 
 <body>
@@ -25,21 +25,21 @@
         </div>
     </header>
     <div class="">{% block content %} {% endblock %}
-        <!-- <div class="main-content">
+        <div class="main-content">
             <section class="section">
                 <h2 class="section-title">Berita Panas</h2>
                 <div class="container1">
-                    <h2 class="subtitle"><strong>Viral Isi Flashdisk Syahroni Tersebar, "Bugil Berdua Bareng Bahlil"</strong></h2>
-                    <p class="text">Beberapa waktu lalu Syahroni mengungkap flashdisk miliknya hilang saat dijarah oleh warga. Tersebar ...</p>
-                    <a href="{% url 'konversi' %}">
-                        <button class="button1">
-                            Konversi angka ke teks
-                        </button>
-                    </a>
+                    <h2 class="subtitle"><strong>Content</strong></h2>
+                    <img src="{% static 'img/img.png' %}" alt="" width="250em" height="auto" float="left" margin="15px">
+                    <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus, labore harum
+                        fugit cum expedita nulla ipsum dolores perspiciatis dolore explicabo quia quo commodi est
+                        pariatur praesentium deleniti, amet nihil porro?</p>
                 </div>
             </section>
-        </div> -->
+        </div>
     </div>
+
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -65,9 +65,10 @@
             <!-- <p>&copy; 2023 NovaDesign. Semua hak dilindungi.</p> -->
         </div>
     </footer>
-    
+
     <div style="height: 50px;"></div>
-    
+
     <script src="{% static 'js/myapp.js' %}"></script>
 </body>
+
 </html>

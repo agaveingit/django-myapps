@@ -1,32 +1,32 @@
-{% extends "base.html" %} 
-    {% block title %}
-        Home
-    {% endblock %}
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock %}
 
-    {% block content %}
-    <div class="main-content">
-        <section class="section">
-            <h2 class="section-title">Apps List</h2>
-            <div class="container1">
-                <h2 class="subtitle">Konversi Angka ke Teks</h2>
-                <p class="text">Ini adalah aplikasi untuk mendapatkan ejaan suatu bilangan.</p>
-                <a href="{% url 'konversi' %}">
-                    <button class="button1">
-                        Konversi angka ke teks
-                    </button>
-                </a>
-            </div>
-    
-            <div class="container2">
-                <h2 class="subtitle">Generator Kode QR</h2>
-                <p class="text">Ini adalah aplikasi untuk membuat kode QR dari teks atau link.</p>
-                <a href="{% url 'qrgen' %}">
-                    <button class="button2">
-                            QR Code Generator
-                    </button>
-                </a>
-            </div>
-        </section>
-    </div>
-    
-    {% endblock %}
+{% block content %}
+<div class="main-content">
+    <section class="section">
+        <h2 class="section-title">Apps List</h2>
+        <div class="container1">
+            <h2 class="subtitle">Konversi Angka ke Teks</h2>
+            <p class="text">Ini adalah aplikasi untuk mendapatkan ejaan suatu bilangan.</p>
+            <a href="{% url 'konversi' %}">
+                <button class="button1">
+                    Konversi angka ke teks
+                </button>
+            </a>
+        </div>
+
+        <div class="container2">
+            <h2 class="subtitle">Generator Kode QR</h2>
+            <p class="text">Ini adalah aplikasi untuk membuat kode QR dari teks atau link.</p>
+            <a href="{% url 'qrgen' %}">
+                <button class="button2">
+                    QR Code Generator
+                </button>
+            </a>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
