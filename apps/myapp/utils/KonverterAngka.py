@@ -60,9 +60,9 @@ class Konverter:
                 if nilai == 1_000 and depan == 1:
                     head = "seribu"
                 else:
-                    head = f"{self.konversi(depan)} {nama}"
+                    head = f"{self.konverter(depan)} {nama}"
 
-                return head if sisa == 0 else f"{head} {self.konversi(sisa)}"
+                return head if sisa == 0 else f"{head} {self.konverter(sisa)}"
 
         # fallback 
         return ""
