@@ -32,14 +32,11 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-# Switch to the non-privileged user to run the application.
-USER appuser
-
-# Copy the source code into the container.
-COPY . .
-
-# Expose the port that the application listens on.
-EXPOSE 8000
-
 # Run the application.
-CMD ["gunicorn", "apps.core.wsgi", "--bind=0.0.0.0:8000", "--workers=3", "--threads=2"]
+COPY . .
+RUN chmod +x deploy/entrypoint.sh
+RUN mkdir -p /app/staticfiles && chown -R appuser:appuser /app/staticfiles
+
+USER appuser
+EXPOSE 8000
+ENTRYPOINT ["deploy/entrypoint.sh"]
