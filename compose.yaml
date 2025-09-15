@@ -1,0 +1,22 @@
+services:
+  server:
+    build: .
+    container_name: server
+    command: /entrypoint.sh
+    volumes:
+      - ./staticfiles:/app/staticfiles
+    expose:              # beda dengan ports, hanya terlihat di internal network
+      - "8000"
+    env_file:
+      - .env  
+
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    ports:
+      - "8080:80"        # cuma nginx yang buka ke host
+    volumes:
+      - ./deploy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./staticfiles:/app/staticfiles
+    depends_on:
+      - server
