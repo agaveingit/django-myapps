@@ -32,9 +32,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-# Run the application.
 COPY . .
-RUN chmod +x deploy/entrypoint.sh
+
+COPY deploy/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 RUN mkdir -p /app/staticfiles && chown -R appuser:appuser /app/staticfiles
 
 USER appuser
