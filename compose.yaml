@@ -1,24 +1,28 @@
 volumes:
   staticfiles:
-  nginx-conf:
 
 services:
   server:
     build: .
-    command: /entrypoint.sh
-    volumes:
-      - staticfiles:/app/staticfiles
+    develop:
+      watch:
+        - action: sync
+          path: ./myapp
+          target: /app/myapp
+        - action: rebuild
+          path: requirements.txt
     expose:
       - "8000"
     env_file:
-      - .env  
+      - .env
+    volumes:
+      - staticfiles:/app/staticfiles
 
   nginx:
-    image: nginx:stable
+    build: ./deploy/nginx
     ports:
       - "8080:80"
     volumes:
-      - ./deploy/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - staticfiles:/app/staticfiles
     depends_on:
       - server
