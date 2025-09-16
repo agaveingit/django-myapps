@@ -1,27 +1,27 @@
 {% extends "base.html" %}
-    {% block title %}
-        Converter App
-    {% endblock %}
+{% block title %}
+Converter App
+{% endblock %}
 
-    {% block content %}
-    <div class="main-content">
-        <section class="section">
-            <h2 class="section-title">Konverter</h2>
-            <div class="card">
-                <h2 class="subtitle">Konversi Angka -> Teks</h2>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                        <input type="text" name="angka" placeholder="Masukkan angka" class="input">
-                        <button type="submit" id="submitButton" class="button1">Konversi</button>
-                </form>
-                {% if result is not None %}
-                <p class="text">Hasil: {{ result }}</h2>
+{% block content %}
+<div class="main-content">
+    <section class="section">
+        <h2 class="section-title">Konverter</h2>
+        <div class="card">
+            <h2 class="subtitle">Konversi Angka -> Teks</h2>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="angka" placeholder="Masukkan angka" class="input" value="{{ angka }}">
+                <button type="submit" id="submitButton" class="button1">Konversi</button>
+            </form>
+            {% if result is not None %}
+            <p class="text">Hasil: {{ result }}</h2>
                 {% endif %}
-                
+
                 {% if error %}
-                <p class="error-text">{{ error }}</p>
-                {% endif %}
-            </div>
-        </section>
-    </div>
-    {% endblock %}
+            <p class="error-text">{{ error }}</p>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

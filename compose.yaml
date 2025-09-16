@@ -4,6 +4,13 @@ volumes:
 services:
   server:
     build: .
+    develop:
+      watch:
+        - action: sync
+          path: ./myapp
+          target: /app/myapp
+        - action: rebuild
+          path: requirements.txt
     expose:
       - "8000"
     env_file:
