@@ -24,45 +24,46 @@ def konversi(request):
         "error": error
 })
 
+def _create_png_response(qr_generator, data):
+    img = qr_generator.download_qrcode_img(data)
+    buffer = io.BytesIO()
+    img.save(buffer, format="PNG")
+    response = HttpResponse(buffer.getvalue(), content_type="image/png")
+    response['Content-Disposition'] = 'attachment; filename="qrcode.png"'
+    return response
+
+def _create_svg_response(qr_generator, data):
+    svg_data = qr_generator.qrcode_svg(data)
+    response = HttpResponse(svg_data, content_type="image/svg+xml")
+    response['Content-Disposition'] = 'attachment; filename="qrcode.svg"'
+    return response
+
 def qr_gen(request):
-    qr = GenerateQRCode()
-    qr_code = None
-    data: str = None
-    file_type: str = None
-    action: str = None
-    error: str = None
-    if request.method =="POST":
-        """
-        qrgen.html input name='data' give 'string' or empty default is empty
-        qrgen.html select name='file_type' give 'png' or 'svg' default is 'png'
-        """
-        data: str = request.POST.get("data", "kosong")
-        file_type: str = request.POST.get("file_type", "png")
-        action: str = request.POST.get("action")
+    context = {
+        "qr_code": None,
+        "file_type": "png",
+        "data": None,
+        "action": None,
+        "error": None,
+    }
+
+    if request.method == "POST":
+        qr = GenerateQRCode()
+        data = request.POST.get("data")
+        file_type = request.POST.get("file_type", "png")
+        action = request.POST.get("action")
+
+        context.update({"data": data, "file_type": file_type, "action": action})
 
         try:
             if action == "preview":
-                qr_code = qr.qrcode_img(data)
+                context["qr_code"] = qr.qrcode_img(data)
             elif action == "download":
                 if file_type == "png":
-                    img = qr.download_qrcode_img(data) 
-                    buffer = io.BytesIO()
-                    img.save(buffer, format="PNG")
-                    response = HttpResponse(buffer.getvalue(), content_type="image/png")
-                    response['Content-Disposition'] = 'attachment; filename="qrcode.png"'
-                    return response
+                    return _create_png_response(qr, data)
                 elif file_type == "svg":
-                    svg_data = qr.qrcode_svg(data)
-                    response = HttpResponse(svg_data, content_type="image/svg+xml")
-                    response['Content-Disposition'] = 'attachment; filename="qrcode.svg"'
-                    return response
+                    return _create_svg_response(qr, data)
         except QRCodeDataError as e:
-            error = str(e)
+            context["error"] = str(e)
 
-    return render(request, "myapp/qrgen.html", {
-        "qr_code": qr_code,
-        "file_type": file_type,
-        "data": data,
-        "action": action,
-        "error": error,
-})
+    return render(request, "myapp/qrgen.html", context)
