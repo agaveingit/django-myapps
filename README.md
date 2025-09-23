@@ -52,4 +52,10 @@ This project is a collection of simple web applications built with Django. It pr
     - **Number Converter**: http://127.0.0.1:8000/konversi/
     - **QR Generator**: http://127.0.0.1:8000/qrgen/
 
+- **Or if you have docker**
+  ```bash
+  docker compose up --build
+  ```
+  - Open localhost:8080
+
 ---
