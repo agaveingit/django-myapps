@@ -45,6 +45,8 @@ def qr_gen(request):
         "data": None,
         "action": None,
         "error": None,
+        "png_selected": "selected", # Default selection
+        "svg_selected": "",
     }
 
     if request.method == "POST":
@@ -54,6 +56,10 @@ def qr_gen(request):
         action = request.POST.get("action")
 
         context.update({"data": data, "file_type": file_type, "action": action})
+        
+        # Update selection based on POST data
+        context["png_selected"] = "selected" if file_type == "png" else ""
+        context["svg_selected"] = "selected" if file_type == "svg" else ""
 
         try:
             if action == "preview":
